@@ -1,6 +1,6 @@
 <template>
   <div class="filteredleadsbox">
-    <p></p>
+    <!-- <nuxt-link :to="`/results/${contact.id}`"></nuxt-link> -->
   </div>
 </template>
 

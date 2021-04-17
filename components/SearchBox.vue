@@ -7,10 +7,13 @@
       <input class="searchBox" placeholder="Digite um nome ou categoria de empresa" autofocus />
       <br/>
 
-      <button class="searchButton">Buscar</button>
+      <nuxt-link to="/results"><button class="searchButton">Buscar</button></nuxt-link>
     </form>
   </div>
 </template>
+
+/* this page sends the PAYLOAD to the store to get the filtered contacts.
+maybe using getters?? */
 
 <script>
 
