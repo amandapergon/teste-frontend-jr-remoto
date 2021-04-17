@@ -1,17 +1,16 @@
 <template>
-  <div class="filteredleadsbox">
+  <div class="filteredcontactsbox">
     <!-- <nuxt-link :to="`/results/${contact.id}`"></nuxt-link> -->
   </div>
 </template>
 
 <script>
 export default {
-  props: ['contact']
 }
 </script>
 
 <style lang="scss" scoped="true">
-.filteredleadsbox {
+.filteredcontactsbox {
   margin-top: 3rem;
   margin-left: 5rem;
   width: 100rem;

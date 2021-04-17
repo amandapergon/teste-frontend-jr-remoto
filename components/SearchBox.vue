@@ -13,7 +13,10 @@
 </template>
 
 /* this page sends the PAYLOAD to the store to get the filtered contacts.
-maybe using getters?? */
+maybe using getters?? 
+
+Pressionar enter na caixa de busca tem quase a mesma função que o botão de busca. resolver isso
+*/
 
 <script>
 
