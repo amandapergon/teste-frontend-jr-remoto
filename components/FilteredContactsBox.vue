@@ -1,11 +1,13 @@
 <template>
   <div class="filteredcontactsbox">
     <!-- <nuxt-link :to="`/results/${contact.id}`"></nuxt-link> -->
+    <FullContactCard />
   </div>
 </template>
 
 <script>
 export default {
+  
 }
 </script>
 

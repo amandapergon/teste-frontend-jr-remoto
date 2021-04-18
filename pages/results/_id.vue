@@ -7,13 +7,9 @@
 </template>
 
 <script>
-    export default {
-        computed: {
-            contact() {
-                return this.$store.getters.getContactById(this.$route.params.id)
-            }
-        }
-    }
+export default {
+    
+}
 </script>
 
 <style scoped>

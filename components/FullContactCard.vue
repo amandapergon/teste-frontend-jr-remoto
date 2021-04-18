@@ -1,30 +1,38 @@
 <template>
-    <div>
-        <h2>
-            <p>
-
-            </p>
-            <p>
-
-            </p>
-        </h2>
-
-    </div>
+<div class="card">
+    <div class="container">
+    <p>{{ contacts[2].name }}</p> 
+  </div>
+</div>
 </template>
 
 <script>
-export default {  
-    computed: {
-        contact() {
-            return this.$store.getters.getContactById(this.$route.params.id)
-        }
+  import {
+    mapActions,
+    mapState
+  } from "vuex";
+
+  export default {
+    name: 'FullContactCard',
+    methods: {
+      ...mapActions(["fetchContacts"])
     },
-    mounted() {
-        this.$store.dispatch()
-    }    
-}
+    computed: {
+        ...mapState([
+            'contacts'
+        ])
+    },
+    created() {
+      this.fetchContacts()
+    }
+  }
 </script>
 
-<style>
 
+
+<style>
+.container {
+  padding: 2px 16px;
+  border: 2px solid red;
+}
 </style>

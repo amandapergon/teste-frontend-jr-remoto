@@ -1,24 +1,29 @@
-export const state = () => ({
-    contacts: []
-})
+import axios from 'axios'
 
-export const mutations = {
-    async fetch() {
-        this.contacts = await fetch(
-        'https://jsonplaceholder.typicode.com/users'
-      ).then(res => res.json())
+const state = { 
+    contacts: {}
+};
+
+const getters = { 
+    contactsList: state => state.contacts
+};
+
+const actions = { 
+    async fetchContacts({commit}){
+      const response = await axios.get("https://jsonplaceholder.typicode.com/users");
+      commit("setContacts", response.data)
     }
-}
+};
 
-export const getters = {
-    getContactByName: (state) => (name) => {
-        return state.contacts.find(contact => contact.name === name)
-    },
-    getContactsByCompanyBs: (state) => (bs) => {
-        return state.contacts.find(contact => contact.company.bs === bs)
-    },
-    getContactById: (state) => (id) => {
-        return state.contacts.find(contact => contact.id == id)
-    }
-}
+const mutations = { 
+    setContacts: (state, contacts) => (
+        state.contacts = contacts
+    )
+};
 
+export default {
+    state,
+    getters,
+    actions,
+    mutations
+}
