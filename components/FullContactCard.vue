@@ -1,8 +1,6 @@
 <template>
 <div class="card">
-    <div class="container">
-    <p>{{ contacts[2].name }}</p> 
-  </div>
+    <p>{{ contacts }}</p> 
 </div>
 </template>
 
@@ -10,29 +8,23 @@
   import {
     mapActions,
     mapState
-  } from "vuex";
+  } from 'vuex';
 
   export default {
     name: 'FullContactCard',
     methods: {
-      ...mapActions(["fetchContacts"])
+      ...mapActions(['getContacts'])
+    },
+    mounted() {
+      this.getContacts()
     },
     computed: {
-        ...mapState([
-            'contacts'
-        ])
-    },
-    created() {
-      this.fetchContacts()
+      ...mapState([
+          'contacts'
+      ])
     }
   }
 </script>
 
-
-
 <style>
-.container {
-  padding: 2px 16px;
-  border: 2px solid red;
-}
 </style>
