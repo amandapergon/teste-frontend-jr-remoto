@@ -19,15 +19,14 @@ const getters = {
     getContactsList: (state) => (contacts) => {
         return state.contacts
     },
-
     getContactByName: (state) => (name) => {
-        return state.contactsList.find(contact => contact.name === name)
+        return state.contacts.find(contact => contact.name === name)
     },
     getContactsByCompanyBs: (state) => (bs) => {
-        return state.contactsList.find(contact => contact.company.bs === bs)
+        return state.contacts.find(contact => contact.company.bs === bs)
     },
     getContactById: (state) => (id) => {
-        return state.contactsList.find(contact => contact.id === id)
+        return state.contacts.find(contact => contact.id === id)
     }
 };
 

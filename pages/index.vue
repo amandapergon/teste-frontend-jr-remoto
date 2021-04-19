@@ -2,18 +2,18 @@
   <div class="leads">
     <Logo />
     <!-- <Logo dark-background /> -->
-    <SearchBox />
+    <SearchContacts />
   </div>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
-import SearchBox from '~/components/SearchBox.vue'
+import SearchContacts from '~/components/SearchContacts.vue'
 
 export default {
   components: {
     Logo,
-    SearchBox
+    SearchContacts
   }
 }
 </script>
