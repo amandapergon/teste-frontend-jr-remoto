@@ -1,39 +1,28 @@
 <template>
-  <div>
-    <div v-if="contacts.length > 0" class="all-cards">
-      <div class="cards-container">
-        <div v-for="contact in contacts" :key="contact.id" class="card">
-          <div class="username">
-            <h1>{{ contact.username }}</h1>
-          </div>
-          <div class="info-container">
-            <div class="profile-image">
-              <img src="~/assets/avatar.jpg" alt="Unknown User" class="pic">
+    <div class="all-cards">
+        <div class="cards-container">
+            <div v-for="contact in contacts" :key="contact.id" class="card">
+                <div class="username">
+                    <h1>{{ contact.username }}</h1>
+                </div>
+                <div class="info-container">
+                    <div class="profile-image">
+                    <img src="~/assets/avatar.jpg" alt="Unknown User" class="pic">
+                </div>
+                <div class="infos">
+                    <h2>{{ contact.name }}</h2>
+                    <a href="#" class="email">{{ contact.email }}</a>
+                    <p>{{ contact.phone }}</p>
+                    <h4 class="company-name">{{ contact.company.name }}</h4>
+                </div>
             </div>
-            <div class="infos">
-              <h2>{{ contact.name }}</h2>
-              <a href="#" class="email">{{ contact.email }}</a>
-              <p>{{ contact.phone }}</p>
-              <h4 class="company-name">{{ contact.company.name }}</h4>
-            </div>
-          </div>
         </div>
       </div>
     </div>
-    <div v-else>
-      <h1 class="searching">
-        Buscando contatos...
-      </h1>
-    </div>
-  </div>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
-import SearchContacts from './SearchContacts.vue';
-
-  export default {
-    name: "ContactsCards",
+export default {
     methods: {
       ...mapActions(['getContacts'])
     },
@@ -44,11 +33,28 @@ import SearchContacts from './SearchContacts.vue';
       ...mapState([
           'contacts'
       ])
-    }
-  }
+    },
+    props: {
+        searchResult: {
+        type: String
+        }
+    },
+    data: function(){
+    return {
+        filteredContactsList: []
+    };
+    },
+    watch: {
+        searchResult: function(){
+            if ('childInput' === contacts.name | 'childInput' === contacts.company.bs ){
+            this.filteredContactsList.push(this.searchResult)
+            }
+        }
+    },
+}
 </script>
 
-<style lang="scss" scoped="true">
+<style lang="scss" scoped>
 * {
   margin: 0;
   padding: 0;
@@ -122,10 +128,4 @@ import SearchContacts from './SearchContacts.vue';
 .email {
   padding: 10px 0;
 }
-.searching {
-  color: $dark-blue;
-  font-size: 2.0rem;
-  letter-spacing: 0.2rem;
-}
-
 </style>

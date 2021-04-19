@@ -3,33 +3,30 @@
     <div class="search-container">
       <h1>Encontre futuros clientes:</h1>
       <div class="smaller-search-container">
-        <input type="text" v-model="search" placeholder="Digite um nome de cliente ou categoria de negócio" class="searchBox" autofocus />
-        <button class="searchButton">Buscar</button>
+        <input placeholder="Digite um nome de cliente ou categoria de negócio" v-model="searchKey" class="searchBox" autofocus />
+        <button @click="submit" class="searchButton">Buscar</button>
       </div>
     </div>
     <div class="cards-container">
-      <ContactsCards />
     </div>
   </div>
 </template>
 
 <script>
-import ContactsCards from './ContactsCards.vue'
-export default {
-  components: {
-    ContactsCards
-  },
-  data() {
-    return {
-      search: ''
-    }
-  },
-  methods: {
-    submit(event) {
-      alert('Cheguei aqui!!')
+  export default {
+    name: 'SearchContacts',
+    data() {
+      return {
+        searchKey: ''
+      }
+    },
+    methods: {
+      submit: function() {
+        this.$emit('inputData', this.searchKey);
+        this.searchKey = ''
+      }
     }
   }
-}
 </script>
 
 <style lang="scss" scoped="true">
@@ -44,7 +41,6 @@ export default {
   font-weight: inherit;
   color: $dark-blue;
   letter-spacing: 0.2rem;
-
 }
 .smaller-search-container {
   display: flex;
@@ -62,16 +58,17 @@ export default {
   border: $border-color 1px solid;
 }
 .searchButton {
-  background-color: $blue;
+  background-color: $green;
   border: $dark-blue 1px solid;
   border-radius: 0.3rem;
   margin-top: 1rem;
   margin-left: 2rem;
   padding: 0.9rem;
   width: 10rem;
-  color: whitesmoke;
+  color: $dark-blue;
   font-family: 'Roboto', sans-serif;
   font-size: 1.4rem;
+  letter-spacing: 0.2rem;
 }
 .cards-container {
   margin-top: 2rem;
