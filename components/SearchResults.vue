@@ -46,8 +46,6 @@ export default {
     }
 }
 
-/* se o valor do input corresponder a algum valor  */
-
 </script>
 
 <style lang="scss" scoped>
