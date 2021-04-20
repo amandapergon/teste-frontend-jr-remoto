@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="contacts.length > 0" class="all-cards">
+    <div class="all-cards">
       <div class="cards-container">
-        <div v-for="contact in contacts" :key="contact.id" class="card">
+        <div v-for="contact in filteredArray" :key="contact.id" class="card">
           <div class="username">
             <h1>{{ contact.username }}</h1>
           </div>
@@ -20,32 +20,23 @@
         </div>
       </div>
     </div>
-    <div v-else>
+    <div>
       <h1 class="searching">
-        Buscando contatos...
       </h1>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
-import SearchContacts from './SearchContacts.vue';
 
   export default {
     name: "ContactsCards",
-    methods: {
-      ...mapActions(['getContacts'])
-    },
-    mounted() {
-      this.getContacts()
-    },
-    computed: {
-      ...mapState([
-          'contacts'
-      ])
-    }
+    props: {
+  	filteredArray: {
+      type: Array,
+  	}
   }
+}
 </script>
 
 <style lang="scss" scoped="true">
@@ -53,6 +44,7 @@ import SearchContacts from './SearchContacts.vue';
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  align-items: center;
 }
 .all-cards {
   display: flex;

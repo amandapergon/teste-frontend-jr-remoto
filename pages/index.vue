@@ -2,28 +2,23 @@
   <div class="leads">
     <Logo />
     <!-- <Logo dark-background /> -->
-    <SearchContacts @searchKey="updateResults" />
+    <SearchContacts @inputData="updateResults" />
     <div>
-      <ContactsCards />
-    </div>
-<!--     <div v-else>
       <SearchResults :searchResult="childInput" />
-    </div>   -->  
+    </div>    
   </div>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
 import SearchContacts from '~/components/SearchContacts.vue'
-import ContactsCards from '~/components/ContactsCards.vue'
-/* import SearchResults from '~/components/SearchResults.vue' */
+import SearchResults from '~/components/SearchResults.vue' 
 
 export default {
   components: {
     Logo,
     SearchContacts,
-    ContactsCards,
-/*     SearchResults */
+    SearchResults
   },
   data: function () {
     return {

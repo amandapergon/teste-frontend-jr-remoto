@@ -1,5 +1,5 @@
 <template>
-    <div class="all-cards">
+    <div v-if="filteredContactsList.length > 0" class="all-cards">
         <div class="cards-container">
             <div v-for="contact in contacts" :key="contact.id" class="card">
                 <div class="username">
@@ -22,8 +22,18 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 export default {
-    methods: {
+    data: function(){
+      return {
+        filteredContactsList: []
+      };
+    },
+    watch: {
+      searchResult: function(){
+        this.filteredContactsList.push(this.searchResult)
+      }
+    },    methods: {
       ...mapActions(['getContacts'])
     },
     mounted() {
@@ -31,27 +41,13 @@ export default {
     },
     computed: {
       ...mapState([
-          'contacts'
+        'contacts'
       ])
-    },
-    props: {
-        searchResult: {
-        type: String
-        }
-    },
-    data: function(){
-    return {
-        filteredContactsList: []
-    };
-    },
-    watch: {
-        searchResult: function(){
-            if ('childInput' === contacts.name | 'childInput' === contacts.company.bs ){
-            this.filteredContactsList.push(this.searchResult)
-            }
-        }
-    },
+    }
 }
+
+/* se o valor do input corresponder a algum valor  */
+
 </script>
 
 <style lang="scss" scoped>

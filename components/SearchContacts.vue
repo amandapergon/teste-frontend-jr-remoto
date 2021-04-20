@@ -4,15 +4,21 @@
       <h1>Encontre futuros clientes:</h1>
       <div class="smaller-search-container">
         <input placeholder="Digite um nome de cliente ou categoria de negócio" v-model="searchKey" class="searchBox" autofocus />
-        <button @click="submit" class="searchButton">Buscar</button>
       </div>
     </div>
-    <div class="cards-container">
+    <div v-if="filteredArray !== null" class="cards-container">
+      <ContactsCards :filteredArray="filteredArray"/>
+    </div>
+    <div v-else class="not-found">
+      <h1>Contato não encontrado.</h1>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
+import ContactsCards from '~/components/ContactsCards.vue'
+
   export default {
     name: 'SearchContacts',
     data() {
@@ -24,12 +30,32 @@
       submit: function() {
         this.$emit('inputData', this.searchKey);
         this.searchKey = ''
+      },
+      ...mapActions(['getContacts'])
+    },
+    mounted() {
+      this.getContacts()
+    },
+    computed: {
+      ...mapState([
+          'contacts'
+      ]),
+      filteredArray: function() {
+      return this.contacts.filter(cur => {
+        return cur.name.toLowerCase().match(this.searchKey.toLowerCase()) !== null || cur.company.bs.toLowerCase().match(this.searchKey.toLowerCase()) !== null;
+      })
       }
     }
   }
 </script>
 
 <style lang="scss" scoped="true">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  align-items: center;
+}
 .search-container {
   display: flex;
   flex-wrap: wrap;
@@ -52,25 +78,19 @@
   margin-top: 1rem;
   padding: 0.25rem;
   text-align: center;;
-  width: 35rem;
+  width: 30rem;
   min-width: 5rem;
   height: 3rem;
   border: $border-color 1px solid;
 }
-.searchButton {
-  background-color: $green;
-  border: $dark-blue 1px solid;
-  border-radius: 0.3rem;
-  margin-top: 1rem;
-  margin-left: 2rem;
-  padding: 0.9rem;
-  width: 10rem;
-  color: $dark-blue;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.4rem;
-  letter-spacing: 0.2rem;
-}
 .cards-container {
   margin-top: 2rem;
+}
+.not-found {
+  color: $dark-blue;
+  font-size: 2.0rem;
+  letter-spacing: 0.2rem;
+  text-align: center;
+  margin-top: 12rem;
 }
 </style>
