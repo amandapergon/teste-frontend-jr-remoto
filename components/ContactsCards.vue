@@ -4,7 +4,7 @@
       <div class="cards-container">
         <div v-for="contact in filteredArray" :key="contact.id" class="card">
           <div class="username">
-            <h1>{{ contact.username }}</h1>
+            <h1>@{{ contact.username }}</h1>
           </div>
           <div class="info-container">
             <div class="profile-image">
@@ -15,6 +15,7 @@
               <a href="#" class="email">{{ contact.email }}</a>
               <p>{{ contact.phone }}</p>
               <h4 class="company-name">{{ contact.company.name }}</h4>
+              <h4 class="company-category">({{ contact.company.bs }})</h4>
             </div>
           </div>
         </div>
@@ -65,11 +66,12 @@
     overflow: hidden;
 }
 .username {
-  background-color: $light-blue;
+  background-color: $dark-blue;
 }
 .username h1 {
+  font-size: 1.6rem;
   padding: 10px 0;
-  color: $dark-blue;
+  color: $grey;
   text-align: center;
   letter-spacing: 0.2rem;
 }
@@ -97,12 +99,19 @@
   font-weight: bolder;
   letter-spacing: 0.1rem;
 }
-.infos h4 {
+.company-name {
   color: $light-blue;
   font-size: 1.4rem;
   font-weight: bolder;
   letter-spacing: 0.2rem;
   margin-top: 0.4rem;
+}
+.company-category {
+  font-size: 1.1rem;
+  font-weight: lighter;
+  letter-spacing: 0.2;
+  margin-top: 0.4rem;
+  color: $light-blue;
 }
 .profile-picture {
   width: 100%;

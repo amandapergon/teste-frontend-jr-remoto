@@ -3,11 +3,11 @@
     <div class="search-container">
       <h1>Encontre futuros clientes:</h1>
       <div class="smaller-search-container">
-        <input placeholder="Digite um nome de cliente ou categoria de negócio" v-model="searchKey" class="searchBox" autofocus />
+        <input v-model="searchKey" placeholder="Digite um nome de cliente ou categoria de negócio" class="searchBox" />
       </div>
     </div>
     <div v-if="filteredArray !== null" class="cards-container">
-      <ContactsCards :filteredArray="filteredArray"/>
+      <ContactsCards v-bind:filteredArray="filteredArray"/>
     </div>
     <div v-else class="not-found">
       <h1>Contato não encontrado.</h1>
@@ -17,7 +17,6 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
-import ContactsCards from '~/components/ContactsCards.vue'
 
   export default {
     name: 'SearchContacts',
@@ -25,16 +24,6 @@ import ContactsCards from '~/components/ContactsCards.vue'
       return {
         searchKey: ''
       }
-    },
-    methods: {
-      submit: function() {
-        this.$emit('inputData', this.searchKey);
-        this.searchKey = ''
-      },
-      ...mapActions(['getContacts'])
-    },
-    mounted() {
-      this.getContacts()
     },
     computed: {
       ...mapState([
@@ -45,6 +34,16 @@ import ContactsCards from '~/components/ContactsCards.vue'
         return cur.name.toLowerCase().match(this.searchKey.toLowerCase()) !== null || cur.company.bs.toLowerCase().match(this.searchKey.toLowerCase()) !== null;
       })
       }
+    },
+    mounted() {
+      this.getContacts()
+    },
+    methods: {
+      submit: function() {
+        this.$emit('inputData', this.searchKey);
+        this.searchKey = ''
+      },
+      ...mapActions(['getContacts'])
     }
   }
 </script>
@@ -54,7 +53,6 @@ import ContactsCards from '~/components/ContactsCards.vue'
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  align-items: center;
 }
 .search-container {
   display: flex;
@@ -62,26 +60,31 @@ import ContactsCards from '~/components/ContactsCards.vue'
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
   margin-top: 1rem;
   font-family: 'Roboto', sans-serif;
   font-weight: inherit;
   color: $dark-blue;
   letter-spacing: 0.2rem;
+  box-sizing: border-box;
 }
 .smaller-search-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-top: 1rem;
 }
 .searchBox {
-  margin-top: 1rem;
-  padding: 0.25rem;
-  text-align: center;;
-  width: 30rem;
-  min-width: 5rem;
+  text-align: center;
+  width: 100%;
+  min-width: 30rem;
   height: 3rem;
-  border: $border-color 1px solid;
+  border: $dark-blue 1px solid;
+  color: $blue;
+}
+input:focus {
+  border: $green 3px solid;
 }
 .cards-container {
   margin-top: 2rem;
