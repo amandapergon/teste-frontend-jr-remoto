@@ -77,8 +77,8 @@ import { mapActions, mapState } from 'vuex';
 }
 .searchBox {
   text-align: center;
-  width: 100%;
-  min-width: 30rem;
+  width: 90vw;
+  max-width: 30rem;
   height: 3rem;
   border: $dark-blue 1px solid;
   color: $dark-blue;
