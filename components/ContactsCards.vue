@@ -8,7 +8,7 @@
           </div>
           <div class="info-container">
             <div class="profile-image">
-              <img src="~/assets/avatar.jpg" alt="Unknown User" class="pic">
+              <img src="~/assets/avatar.jpg" :alt="contact.name" class="pic">
             </div>
             <div class="infos">
               <h2>{{ contact.name }}</h2>

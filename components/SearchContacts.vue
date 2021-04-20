@@ -3,7 +3,7 @@
     <div class="search-container">
       <h1>Encontre futuros clientes:</h1>
       <div class="smaller-search-container">
-        <input v-model="searchKey" placeholder="Digite um nome de cliente ou categoria de negócio" class="searchBox" />
+        <input v-model="searchKey" placeholder="Digite um nome de cliente ou a categoria da empresa" class="searchBox" />
       </div>
     </div>
     <div v-if="filteredArray !== null" class="cards-container">
@@ -81,7 +81,8 @@ import { mapActions, mapState } from 'vuex';
   min-width: 30rem;
   height: 3rem;
   border: $dark-blue 1px solid;
-  color: $blue;
+  color: $dark-blue;
+  font-size: 1.1rem;
 }
 input:focus {
   border: $green 3px solid;
